@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>To My Dearest Hajar 💖</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      background: linear-gradient(to bottom right, #ffdde1, #ee9ca7);
+      font-family: 'Segoe UI', sans-serif;
+      overflow-x: hidden;
+    }
+
+    header {
+      text-align: center;
+      padding: 50px 20px;
+      color: #fff;
+    }
+
+    header h1 {
+      font-size: 3.5em;
+      margin-bottom: 10px;
+    }
+
+    #typed-text {
+      font-size: 1.2em;
+      max-width: 600px;
+      margin: 0 auto;
+      white-space: pre-line;
+      min-height: 100px;
+    }
+
+    .card-container {
+      display: flex;
+      justify-content: center;
+      margin-top: 40px;
+      perspective: 1000px;
+    }
+
+    .card {
+      width: 300px;
+      height: 400px;
+      transition: transform 0.8s;
+      transform-style: preserve-3d;
+      cursor: pointer;
+      position: relative;
+    }
+
+    .card.flip {
+      transform: rotateY(180deg);
+    }
+
+    .card .front, .card .back {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      border-radius: 20px;
+      backface-visibility: hidden;
+      box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+    }
+
+    .card .front {
+      background: #fff;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .card .front img {
+      width: 120px;
+      border-radius: 50%;
+      margin-bottom: 20px;
+    }
+
+    .card .front h2 {
+      color: #d6336c;
+    }
+
+    .card .back {
+      background: #f8f0fc;
+      transform: rotateY(180deg);
+      padding: 30px;
+      color: #6a1b4d;
+      font-size: 1.1em;
+    }
+
+    .gallery {
+      margin: 60px auto;
+      text-align: center;
+    }
+
+    .gallery h2 {
+      color: #fff;
+      margin-bottom: 20px;
+    }
+
+    .gallery-images {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 15px;
+    }
+
+    .gallery-images img {
+      width: 150px;
+      height: 150px;
+      border-radius: 12px;
+      object-fit: cover;
+      opacity: 0;
+      transform: translateY(20px);
+      transition: all 0.6s ease-out;
+    }
+
+    .gallery-images img.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .music-player {
+      text-align: center;
+      margin-top: 40px;
+    }
+
+    .heart {
+      position: fixed;
+      color: #ff4d6d;
+      font-size: 1.5rem;
+      animation: floatUp 2s ease-out forwards;
+      pointer-events: none;
+      z-index: 1000;
+    }
+
+    @keyframes floatUp {
+      0% {
+        transform: translateY(0);
+        opacity: 1;
+      }
+      100% {
+        transform: translateY(-100px);
+        opacity: 0;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>Hi Hajar 🌹</h1>
+    <p id="typed-text"></p>
+  </header>
+
+  <div class="card-container">
+    <div class="card" id="flipCard">
+      <div class="front">
+        <img src="https://i.imgur.com/9z3sZ5O.png" alt="Love Icon" />
+        <h2>Click Me 💖</h2>
+      </div>
+      <div class="back">
+        <p>
+          I know words fall short when I try to express how much you mean to me.<br><br>
+          But here's my little creation, from my heart to yours.<br><br>
+          You inspire me every day. I love your smile, your mind, your soul.<br><br>
+          Always yours,<br><br> ps:" i will still try make this better "<br>
+                                       ❤️
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <div class="music-player">
+    <p style="color:white; font-weight: bold;">Press play for a song I picked for you 🎵</p>
+    <audio controls>
+      <source src="./music/Time in a Bottle.mp3" type="audio/mp3">
+      Your browser does not support the audio element.
+    </audio>
+  </div>
+  <script>
+    // Typing animation
+    const message = `You're the most beautiful part of my life.\nThis is a small gift made just for you 💌`;
+    const typedText = document.getElementById('typed-text');
+    let idx = 0;
+    function type() {
+      if (idx < message.length) {
+        typedText.innerHTML += message.charAt(idx);
+        idx++;
+        setTimeout(type, 40);
+      }
+    }
+    type();
+
+    // Flip card and spawn hearts
+    const card = document.getElementById('flipCard');
+    card.addEventListener('click', () => {
+      card.classList.toggle('flip');
+      for (let i = 0; i < 10; i++) createHeart();
+    });
+
+    function createHeart() {
+      const heart = document.createElement('div');
+      heart.classList.add('heart');
+      heart.textContent = '💖';
+      heart.style.left = Math.random() * window.innerWidth + 'px';
+      heart.style.top = Math.random() * 400 + 'px';
+      document.body.appendChild(heart);
+      setTimeout(() => heart.remove(), 2000);
+    }
+  </script>
+
+</body>
+</html>
